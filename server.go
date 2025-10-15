@@ -26,19 +26,19 @@ const (
 	  replace with your client id <br>
 	  find your client id here: <a href="https://dashboard.alipay.com/global-payments/developers/quickStart">quickStart</a>
 	*/
-	ClientID = "your_client_id"
+	ClientID = "5YEZ50305NN403523"
 
 	/*
 	  replace with your antom public key (used to verify signature) <br>
 	  find your antom public key here: <a href="https://dashboard.alipay.com/global-payments/developers/quickStart">quickStart</a>
 	*/
-	AntomPublicKey = "antom_public_key"
+	AntomPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkWZnOpL6uX6UT05KuT2GDUiB2bSM1bTq5rFRrbpXy7TihPX7dYc6lJIF4cEBD/DeAU9g9CMGJL/X7d3DgF++4y9tIb+yZ3ihJmjkVMdVwWhuqY1NIqvQKFwlNC+LzLrZiI0qH3SyoEEZtfQLOtBALLbdvKmQLzXcbhJ5uJJqgi0W4CLOJhQXIrPxwlBWHjCL44/BCeqqSCJq1oiTjwmu6CSUCyauOTXs4JAPBw6673OsdJMZq+Cn0m7dE3nb98XisCE2NJqS00JGloZynAeoaVPI9OCTrXt/m6+zsQJF6jibqnok4tiYBfQRxzdWkzT7tmeZI4Jc2HVK7LOS4mJNSwIDAQAB"
 
 	/*
 	  replace with your private key (used to sign) <br>
 	  please ensure the secure storage of your private key to prevent leakage
 	*/
-	MerchantPrivateKey = "your_private_key"
+	MerchantPrivateKey = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCrrS8gPN53/kjhAtktlOlesneRNsGhwJjeTrrQ1BbU46QlRkwEgsutTTxK0fV99G/BJ8e25SSGUGVI1bTDIVVugJ8uZKlZAjYwYsSNQ4MESv72RE/Q3Vls7MVZ4FV1tAj1ChLi0HfL7db8LPltq0sEVdVgvKzhA8cLmks/GPL5uY2qL3y63rpIHe+2LLl9vJaWgV/QGBD4KFXXgm6KSMSRt9EHBRiUG3/tPgnviIHbMqNKTRdq7pBhrnlkOF4eIyHvblz+FlDQZvFBOZDe/YZ29maMM2ydK9LxWS65gRMzg22qkEJJtKY3oHsk4BOqTQwkDljfRecH5mwkTVVhFDfPAgMBAAECggEAVizDqBoFzhPNf21PmOrTzh4lmLX0sn4b/hNlAShFIa33GmLUC7ugA6juZ9xGr2gApOOUA4G4ONeoT8w+RWi5GpPj04Th4PUUQGuDoClQXdpLa1DVA9Hobp3XXosWOtQZXu8klcfxKmOD8+ebeOpv6IgxaLKs0PJ1eqSDuvOKG8GrhrDmNPFi/PEztqfz139DEhFqzTXkAlaGClySkwtLzS7YKdDw5kzCNWsQLGY+Km+kziDLW1/9cq52gySoAnkPBzVtErx8Mttbw/hHicYGBD7cDakJrFhCSwEjB09S0iWi0UV0E9rSzxG7OaHF450A62FUIKGi2Zg0Ezi72heV8QKBgQD8EncLz5IjbDz5GIWlGfbIBMmyixxO7Y//Grp1LsGEW3loMM4fKO9wKC4ESEZmqpF+i2DYx3Zho75uNuy8taW+TFZ8ByUyl1caW9dxj/VNeyQadhJrQTkIKnJpRm1sK2xO89ksN7sjDastxvfajjfaYvytxnX8ft6CgGiApLyFaQKBgQCuWgPHMql7YOqBr8d6vbjyZPPQ68xBebVKzQpclExL73hxqAFWC1dTJsz6Cgm44lhrjgRVZDNAkKHhkAXLe9PDldxOcEm1Elm9LKY1rGMD5sfAHia86imaQ0SS2S4MKzjM12mXePHveQSLaqVjbKoyhYctp1DFta7OGstiPBYUdwKBgHG+z1NYDiTH4dexlhUDW1W0u2NC3LpM/s5pvDvGpnJYaLd4Vnq/GRSuPN2X05TeYRsOP9xyXVv/7J2FUVxyR2FQxzHec42ZtydgzB4ljNayu37pSrR1UQv7Q3d33UaTbaNO6+/FEj/mGhllEFDiHhgA1O6BgJo4kaWn1gA+1gcJAoGAe3IcbrO+MC8kmwIcWRlvk6BKyUfK7SkBZZ7bkUUm6DT7sG1l1Mhe4e78/qSQ0ajhNfXtt5AkgbhmBdD1aWeZPkgjHh5+8Ye2piyw2hveV2rVT3+JqgSZxDGQofDHm7IWm2KBzs/BbO7get3dkBHmR7MnTPnERNgolqF+E2W7tG0CgYBC3DStUhMv3T/0ebBXpmO+iyg48FeUY4Om+/SGMJDehezVNakOW4f4Cn0AeewGMUIYZg8XM7NG/4uYHGy7KcLGnGLZWVWZ6TNgHL8FLZEDI3cD6HkjNbNa/TT19W00KyKJ/RAlRrFy18xs43UKJYWKPwQWmWvM4CCupJ7WlkyUhQ=="
 )
 
 // Initialize global client
