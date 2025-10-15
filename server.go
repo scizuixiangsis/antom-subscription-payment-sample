@@ -94,8 +94,8 @@ func handleSubscriptionCreate(w http.ResponseWriter, r *http.Request) {
 	// If the start time is earlier than the authorization time, the subscription is successful.
 	// If the start time is later than the authorization time, the payment is made after the successful authorization, which is the pre-sale
 	// For details, please refer to: <a href="https://docs.antom.com/ac/subscriptionpay/activation#uiqBb">Samples</a>
-	subscriptionCreateRequest.SubscriptionStartTime = time.Now().Format("2006-01-02T15:04:05-07:00")
-	subscriptionCreateRequest.SubscriptionEndTime = time.Now().AddDate(3, 0, 0).Format("2006-01-02T15:04:05-07:00")
+	subscriptionCreateRequest.SubscriptionStartTime = time.Now().Format("2025-11-27T12:01:01+08:00")
+	subscriptionCreateRequest.SubscriptionEndTime = time.Now().AddDate(3, 0, 0).Format("2025-11-27T12:01:01+08:00")
 
 	// set periodRule
 	subscriptionCreateRequest.PeriodRule = &model.PeriodRule{
