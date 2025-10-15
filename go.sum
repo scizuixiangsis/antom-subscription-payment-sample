@@ -1,0 +1,6 @@
+github.com/Rhymond/go-money v1.0.14 h1:HtdIZ0mP4LrnpN3wdRhsik7pool7x22ILZdDe3moL6E=
+github.com/Rhymond/go-money v1.0.14/go.mod h1:iHvCuIvitxu2JIlAlhF0g9jHqjRSr+rpdOs7Omqlupg=
+github.com/alipay/global-open-sdk-go v1.2.10 h1:niOW7zenbgnYvtl/lhKfGPce9OGCrit8UL7MwE3smzM=
+github.com/alipay/global-open-sdk-go v1.2.10/go.mod h1:nzqEW6Mu1w55kTRyrsdDIsrtmXWxdH/7xppK6He/HNo=
+github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
+github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
