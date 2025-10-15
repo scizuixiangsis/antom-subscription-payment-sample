@@ -1,15 +1,15 @@
 package main
 
 import (
-	"encoding/json"
+	"encoding/json" // 类似 JavaScript 的 JSON.parse/stringify
 	"fmt"
 	"io"
 	"log"
-	"net/http"
+	"net/http" // 处理 HTTP 请求，类似 Express.js
 	"strconv"
 	"time"
 
-	"github.com/Rhymond/go-money"
+	"github.com/Rhymond/go-money" // 第三方包，类似 npm install 的包
 	"github.com/alipay/global-open-sdk-go/com/alipay/api/model"
 	"github.com/alipay/global-open-sdk-go/com/alipay/api/request/notify"
 	"github.com/alipay/global-open-sdk-go/com/alipay/api/request/subscription"
@@ -44,7 +44,7 @@ const (
 // Initialize global client
 var client *defaultAlipayClient.DefaultAlipayClient
 
-func init() {
+func init() { //init() - 初始化函数，会在main函数之前执行
 	client = defaultAlipayClient.NewDefaultAlipayClient(
 		"https://open-sea-global.alipay.com",
 		ClientID,
@@ -53,7 +53,7 @@ func init() {
 }
 
 func main() {
-	// Register routes
+	// Register routes - 注册路由，类似 Express.js 的 app.use('/api', apiRouter)
 
 	// 1. 创建订阅接口 - 前端调用此接口发起订阅支付，返回 Antom 支付页面链接
 	http.HandleFunc("/subscriptions/create", enableCORS(handleSubscriptionCreate))
@@ -65,7 +65,7 @@ func main() {
 	http.HandleFunc("/subscriptions/receiveSubscriptionNotify", enableCORS(handleReceiveSubscriptionNotify))
 
 	fmt.Println("Open your browser and visit: http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil)) // 启动 HTTP 服务器，监听 8080 端口
 }
 
 func handleSubscriptionCreate(w http.ResponseWriter, r *http.Request) {
