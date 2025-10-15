@@ -3,23 +3,25 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Rhymond/go-money"
-	"github.com/alipay/global-open-sdk-go/com/alipay/api/model"
-	"github.com/alipay/global-open-sdk-go/com/alipay/api/request/notify"
-	"github.com/alipay/global-open-sdk-go/com/alipay/api/request/subscription"
-	"github.com/alipay/global-open-sdk-go/com/alipay/api/response"
-	"github.com/alipay/global-open-sdk-go/com/alipay/api/tools"
 	"io"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
 
+	"github.com/Rhymond/go-money"
+	"github.com/alipay/global-open-sdk-go/com/alipay/api/model"
+	"github.com/alipay/global-open-sdk-go/com/alipay/api/request/notify"
+	"github.com/alipay/global-open-sdk-go/com/alipay/api/request/subscription"
+	"github.com/alipay/global-open-sdk-go/com/alipay/api/response"
+	"github.com/alipay/global-open-sdk-go/com/alipay/api/tools"
+
 	defaultAlipayClient "github.com/alipay/global-open-sdk-go/com/alipay/api"
 
 	"github.com/google/uuid"
 )
-const (
+
+const (
 	/*
 	  replace with your client id <br>
 	  find your client id here: <a href="https://dashboard.alipay.com/global-payments/developers/quickStart">quickStart</a>
@@ -49,16 +51,24 @@ func init() {
 		MerchantPrivateKey,
 		AntomPublicKey)
 }
-func main() {
+
+func main() {
 	// Register routes
+
+	// 1. 创建订阅接口 - 前端调用此接口发起订阅支付，返回 Antom 支付页面链接
 	http.HandleFunc("/subscriptions/create", enableCORS(handleSubscriptionCreate))
+
+	// 2. 支付通知回调 - Antom 服务器在每次扣款完成后调用此接口通知支付结果（服务器对服务器）
 	http.HandleFunc("/subscriptions/receivePaymentNotify", enableCORS(handleReceivePaymentNotify))
+
+	// 3. 订阅状态通知回调 - Antom 服务器在订阅状态变化时调用此接口（创建/取消/到期等）（服务器对服务器）
 	http.HandleFunc("/subscriptions/receiveSubscriptionNotify", enableCORS(handleReceiveSubscriptionNotify))
 
 	fmt.Println("Open your browser and visit: http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
-func handleSubscriptionCreate(w http.ResponseWriter, r *http.Request) {
+
+func handleSubscriptionCreate(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
@@ -128,14 +138,16 @@ func init() {
 		env.OsType = model.OsType(subscriptionVO.OsType)
 	}
 	subscriptionCreateRequest.Env = env
-	// replace with your notify url
+
+	// replace with your notify url
 	// or configure your notify url here: <a href="https://dashboard.antom.com/global-payments/developers/iNotify">Notification URL</a>
 	subscriptionCreateRequest.PaymentNotificationUrl = "http://www.yourNotifyUrl.com/subscriptions/receivePaymentNotify"
 	subscriptionCreateRequest.SubscriptionNotificationUrl = "http://www.yourNotifyUrl.com/subscriptions/receiveSubscriptionNotify"
 
 	// replace with your subscription redirect url
 	subscriptionCreateRequest.SubscriptionRedirectUrl = "http://localhost:5173/index.html?subscriptionRequestId=" + subscriptionRequestId
-	startTime := time.Now()
+
+	startTime := time.Now()
 	subscriptionRequestJson, _ := json.Marshal(subscriptionCreateRequest)
 	log.Printf("subscription create request: %s", subscriptionRequestJson)
 	response, err := client.Execute(request)
@@ -157,7 +169,8 @@ func init() {
 		Data:                  response,
 	})
 }
-/*
+
+/*
 receive payment notify
 */
 func handleReceivePaymentNotify(w http.ResponseWriter, r *http.Request) {
@@ -224,7 +237,8 @@ func handleReceivePaymentNotify(w http.ResponseWriter, r *http.Request) {
 		ResultStatus:  "F",
 	})
 }
-/*
+
+/*
 receive subscription notify
 */
 func handleReceiveSubscriptionNotify(w http.ResponseWriter, r *http.Request) {
@@ -291,7 +305,8 @@ func handleReceiveSubscriptionNotify(w http.ResponseWriter, r *http.Request) {
 		ResultStatus:  "F",
 	})
 }
-func enableCORS(handler http.HandlerFunc) http.HandlerFunc {
+
+func enableCORS(handler http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
@@ -312,7 +327,20 @@ func sendJSONResponse(w http.ResponseWriter, statusCode int, data interface{}) {
 }
 
 // SubscriptionVO represents subscription request data
-type SubscriptionVO struct {	PeriodType        string `json:"periodType"`	PeriodCount       int    `json:"periodCount"`	AmountValue       string `json:"amountValue"`	Currency          string `json:"currency"`	PaymentMethodType string `json:"paymentMethodType"`	TerminalType      string `json:"terminalType"`	OsType            string `json:"osType"`}
+type SubscriptionVO struct {
+	PeriodType        string `json:"periodType"`
+	PeriodCount       int    `json:"periodCount"`
+	AmountValue       string `json:"amountValue"`
+	Currency          string `json:"currency"`
+	PaymentMethodType string `json:"paymentMethodType"`
+	TerminalType      string `json:"terminalType"`
+	OsType            string `json:"osType"`
+}
 
 // ApiResponse represents API response structure
-type ApiResponse struct {	Status                string      `json:"status"`	SubscriptionRequestID string      `json:"subscriptionRequestId,omitempty"`	Message               string      `json:"message,omitempty"`	Data                  interface{} `json:"data,omitempty"`}
+type ApiResponse struct {
+	Status                string      `json:"status"`
+	SubscriptionRequestID string      `json:"subscriptionRequestId,omitempty"`
+	Message               string      `json:"message,omitempty"`
+	Data                  interface{} `json:"data,omitempty"`
+}
